@@ -1,0 +1,314 @@
+/* Medical AI Assistant - Global Styles */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+}
+
+/* Custom Scrollbar - Medical Theme */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #1a73e8, #0d47a1);
+  border-radius: 5px;
+  border: 2px solid #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #0d47a1, #0a3d91);
+}
+
+/* Selection */
+::selection {
+  background-color: rgba(26, 115, 232, 0.3);
+  color: #1e293b;
+}
+
+/* Focus Styles for Accessibility */
+*:focus {
+  outline: 3px solid rgba(26, 115, 232, 0.5);
+  outline-offset: 2px;
+}
+
+*:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Smooth Scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Utility Classes */
+.text-medical-primary { color: #1a73e8; }
+.text-medical-success { color: #00b894; }
+.text-medical-warning { color: #ffa726; }
+.text-medical-danger { color: #ff6b6b; }
+
+.bg-medical-light { background-color: #e8f0fe; }
+.bg-medical-success { background-color: #d4edda; }
+.bg-medical-warning { background-color: #fff3cd; }
+.bg-medical-danger { background-color: #f8d7da; }
+
+.border-medical { border-color: #1a73e8; }
+.border-success { border-color: #00b894; }
+.border-warning { border-color: #ffa726; }
+.border-danger { border-color: #ff6b6b; }
+
+/* Medical Alert Classes */
+.medical-alert {
+  padding: 1rem;
+  border-radius: 8px;
+  margin: 1rem 0;
+  border-left: 4px solid;
+}
+
+.alert-info {
+  background-color: #e8f0fe;
+  border-color: #1a73e8;
+}
+
+.alert-success {
+  background-color: #d4edda;
+  border-color: #00b894;
+}
+
+.alert-warning {
+  background-color: #fff3cd;
+  border-color: #ffa726;
+}
+
+.alert-danger {
+  background-color: #f8d7da;
+  border-color: #ff6b6b;
+}
+
+/* Loading Overlay */
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.9);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  backdrop-filter: blur(5px);
+}
+
+.medical-spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid #e8f0fe;
+  border-top: 4px solid #1a73e8;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Print Styles for Medical Reports */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  body {
+    background: white !important;
+    color: black !important;
+  }
+  
+  .app-container {
+    box-shadow: none !important;
+  }
+  
+  .message-content {
+    border: 1px solid #ddd !important;
+    break-inside: avoid;
+  }
+  
+  .disclaimer {
+    border: 2px solid #ffa726 !important;
+    background: #fff3cd !important;
+    color: #856404 !important;
+  }
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+  :root {
+    --primary: #0044cc;
+    --primary-dark: #002266;
+    --background: #ffffff;
+    --surface: #ffffff;
+    --text-primary: #000000;
+    --text-secondary: #333333;
+    --border: #000000;
+  }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Voice Input Indicator */
+.voice-active {
+  position: relative;
+}
+
+.voice-active::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: rgba(255, 107, 107, 0.2);
+  animation: voice-pulse 1s infinite;
+}
+
+@keyframes voice-pulse {
+  0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+  100% { transform: translate(-50%, -50%) scale(1.5); opacity: 0; }
+}
+
+/* Emergency Button */
+.emergency-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ff6b6b, #ff4757);
+  color: white;
+  border: none;
+  box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1000;
+  transition: all 0.3s;
+}
+
+.emergency-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(255, 107, 107, 0.6);
+}
+
+/* Accessibility Improvements */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Medical Typography Hierarchy */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  line-height: 1.3;
+  margin-bottom: 0.5em;
+}
+
+.medical-heading {
+  color: #1a73e8;
+  border-bottom: 2px solid #e8f0fe;
+  padding-bottom: 0.5rem;
+}
+
+/* Data Visualization Colors for Medical Charts */
+.medical-chart-colors {
+  --chart-blue: #1a73e8;
+  --chart-green: #00b894;
+  --chart-red: #ff6b6b;
+  --chart-purple: #8e44ad;
+  --chart-orange: #ffa726;
+  --chart-teal: #00cec9;
+}
+
+/* Icon Animations */
+.pulse-icon {
+  animation: icon-pulse 2s infinite;
+}
+
+@keyframes icon-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+/* Medical Tooltip */
+.medical-tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.medical-tooltip .tooltip-text {
+  visibility: hidden;
+  width: 200px;
+  background-color: #1e293b;
+  color: white;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.3s;
+  font-size: 0.875rem;
+}
+
+.medical-tooltip:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
