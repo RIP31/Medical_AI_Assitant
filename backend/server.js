@@ -21,11 +21,21 @@ mongoose
 // Routes
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/interactions', require('./routes/interactions'));
+app.use('/api/chat', require('./routes/chat'));
 
 // Global Error Handler
 app.use((err, req, res, next) => {
     console.error(err.stack);
-    res.status(500).json({ success: false, message: 'Server Error', error: err.message });
+    const statusCode = err.statusCode || 500;
+
+    if (statusCode === 500 && !err.expose) {
+        return res.status(500).send('Server Error');
+    }
+
+    return res.status(statusCode).json({
+        message: err.message,
+        ...(err.raw ? { raw: err.raw } : {})
+    });
 });
 
 const PORT = process.env.PORT || 5000;
